@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from "react-bootstrap"
+import Logo from "../image/load.gif"
 
 export default class Quotes extends React.Component {
     constructor() {
@@ -24,11 +25,7 @@ export default class Quotes extends React.Component {
                         delivery: ""
                     })
                 }else if(data.setup === undefined){
-                    this.setState({
-                        loading: false,
-                        punch: "Got an error instead of jokes from the Api",
-                        delivery: ""
-                    })
+                    this.quote()
                 }else{
                     this.setState({
                         punch: data.setup,
@@ -46,7 +43,9 @@ export default class Quotes extends React.Component {
                     <Card.Body>
                         <Card.Title>Put a smile on your face.</Card.Title>
                         <Card.Text>
-                            {this.state.loading ? "Loading..." : this.state.punch+" "+ this.state.delivery}
+                            <center>
+                            {this.state.loading ? <img src={Logo} height={100} width={100} alt="loading..." /> : this.state.punch+" "+ this.state.delivery}
+                            </center>
                         </Card.Text>
                         <Button variant="warning" onClick={this.quote}>Smile</Button>
                     </Card.Body>
